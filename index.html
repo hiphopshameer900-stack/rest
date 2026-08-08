@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app">
+  <div class="scene active" id="scene-1">
+    <div class="chat-container">
+      <div class="chat-bubble" id="msg-1">Hey…</div>
+      <div class="chat-bubble" id="msg-2">Can we talk?</div>
+      <div class="chat-bubble" id="msg-3">Actually… forget it.</div>
+    </div>
+    <button class="btn" id="btn-rewind" style="display: none;">What if I could go back?</button>
+  </div>
+
+  <div class="scene" id="scene-2">
+    <p style="font-size: 12px; color: #888; margin-bottom: 8px;">DAY 1 — BEFORE EVERYTHING GOT COMPLICATED</p>
+    <p style="font-size: 14px; margin-bottom: 16px;">Explore the world we built...</p>
+    <div class="grid-memories">
+      <div class="memory-card" onclick="showModal('📸 First Photo', 'I didn\'t know this tiny moment would become one of the memories I\'d miss the most.')">📸 First Photo</div>
+      <div class="memory-card" onclick="showModal('🎵 Our Song', 'Every lyric feels like a space we used to live in.')">🎵 Our Song</div>
+      <div class="memory-card" onclick="showModal('💬 First Conversation', 'Where words were effortless and everything was new.')">💬 First Chat</div>
+      <div class="memory-card" onclick="showModal('❤️ Special Memory', 'A quiet moment when everything just felt right.')">❤️ Special Memory</div>
+      <div class="memory-card" onclick="showModal('😂 Funny Memory', 'When we couldn\'t stop laughing over nothing.')">😂 Funny Memory</div>
+      <div class="memory-card" onclick="showModal('🌙 Late Night', 'Staying up talking until the sun started to show.')">🌙 Late Night</div>
+    </div>
+    <button class="btn btn-secondary" onclick="nextScene(3)">Continue...</button>
+  </div>
+
+  <div class="scene" id="scene-3">
+    <div class="crack-overlay"></div>
+    <p style="font-size: 14px; color: #aaa; margin-bottom: 20px;">“Somewhere along the way… I started breaking the person I loved.”</p>
+    <div class="door-list">
+      <div class="door-item" onclick="showModal('🗣️ MY WORDS', 'Things I said without thinking.')">
+        <strong>🗣️ MY WORDS</strong>
+      </div>
+      <div class="door-item" onclick="showModal('🎭 MY LIES', 'Things I hid when I should have been honest.')">
+        <strong>🎭 MY LIES</strong>
+      </div>
+      <div class="door-item" onclick="showModal('💔 MY ACTIONS', 'Things I did that made you stop feeling safe with me.')">
+        <strong>💔 MY ACTIONS</strong>
+      </div>
+    </div>
+    <button class="btn btn-secondary" onclick="nextScene(4)">Step Through...</button>
+  </div>
+
+  <div class="scene silent-screen" id="scene-4">
+    <div class="silent-text" id="silent-text-box">...</div>
+    <button class="btn btn-secondary" id="btn-scene4-next" style="display: none;" onclick="nextScene(5)">Listen Further</button>
+  </div>
+
+  <div class="scene" id="scene-5">
+    <h3 id="mirror-title" style="margin-bottom: 12px; font-weight: 400;">🪞 WHO I WAS</h3>
+    <div class="mirror-box" id="mirror-box">
+      <ul class="mirror-list" id="mirror-list">
+        <li>• Lied</li>
+        <li>• Reacted without thinking</li>
+        <li>• Hurt with words</li>
+        <li>• Didn't understand</li>
+        <li>• Took things for granted</li>
+      </ul>
+    </div>
+    <p style="font-size: 12px; color: #888; margin-top: 10px;">“I know promises aren't enough anymore. So I don't want you to believe my words. Watch my actions.”</p>
+    <button class="btn" id="btn-mirror" onclick="toggleMirror()">Reflect & Change</button>
+    <button class="btn btn-secondary" id="btn-to-box" style="display: none; margin-top: 8px;" onclick="nextScene(6)">Continue</button>
+  </div>
+
+  <div class="scene" id="scene-6">
+    <p style="font-size: 14px; margin-bottom: 16px;">🎒 Things I wish I could give you</p>
+    <div class="box-items">
+      <div class="box-item"><strong>🫶 Patience:</strong> For the moments when you're angry.</div>
+      <div class="box-item"><strong>🩷 Understanding:</strong> When you don't know how to explain what you feel.</div>
+      <div class="box-item"><strong>🤍 Honesty:</strong> Even when the truth is uncomfortable.</div>
+      <div class="box-item"><strong>🏡 Comfort:</strong> Where you don't have to be scared of being yourself.</div>
+      <div class="box-item"><strong>🌱 Change:</strong> Not because I want you back, but because I should have changed for myself too.</div>
+    </div>
+    <button class="btn btn-secondary" onclick="nextScene(7)">Look Ahead</button>
+  </div>
+
+  <div class="scene" id="scene-7">
+    <div class="empty-scene">🪑 An empty bench.<br><small style="color: #888;">A conversation we never got to have.</small></div>
+    <div class="empty-scene">🎟️ An empty cinema seat.<br><small style="color: #888;">A movie we never watched.</small></div>
+    <div class="empty-scene">☕ Two cups of tea.<br><small style="color: #888;">A normal evening we never got to experience.</small></div>
+    <p style="font-size: 12px; color: #aaa; margin: 12px 0;">“I don't want to spend my life mourning what we had. I want to create something better, if you ever want that too.”</p>
+    <button class="btn btn-secondary" onclick="nextScene(8)">Next</button>
+  </div>
+
+  <div class="scene" id="scene-8">
+    <p style="font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
+      “Don't come back because you feel bad for me.<br><br>
+      Don't come back because you remember the good days.<br><br>
+      Don't come back because I made this.<br><br>
+      <strong>Come back only if one day you genuinely feel safe with me again.</strong>”
+    </p>
+    <p style="font-size: 12px; color: #777;">And if that day never comes… I'll still be grateful that I got to love you.</p>
+    <button class="btn" onclick="nextScene(9)">The Final Page</button>
+  </div>
+
+  <div class="scene" id="scene-9">
+    <h3 style="margin-bottom: 8px;">OUR STORY</h3>
+    <p style="font-size: 12px; color: #666; margin-bottom: 16px;">
+      Ch 1: The Beginning | Ch 2: Good Days | Ch 3: The Damage | Ch 4: The Distance
+    </p>
+    <div style="border: 1px solid #333; padding: 20px; border-radius: 12px; width: 100%; margin-bottom: 20px;">
+      <h4>CHAPTER 5</h4>
+      <p style="font-size: 13px; color: #aaa; margin-top: 8px;">“This page isn't mine to write.”</p>
+    </div>
+    <div style="display: flex; gap: 10px;" id="final-buttons">
+      <button class="btn" onclick="makeChoice(true)">Maybe… someday ❤️</button>
+      <button class="btn btn-secondary" onclick="makeChoice(false)">Leave it blank 🤍</button>
+    </div>
+    <p id="final-message" style="margin-top: 20px; font-size: 14px; display: none;"></p>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h4 id="modal-title" style="margin-bottom: 8px;"></h4>
+      <p id="modal-body" style="font-size: 13px; color: #ccc; margin-bottom: 16px;"></p>
+      <button class="btn btn-secondary" style="padding: 6px 16px; font-size: 12px;" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
