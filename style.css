@@ -1,0 +1,272 @@
+/* ==========================================
+   1. GLOBAL & SETUP
+   ========================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #0d0d11;
+  color: #e6e6e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#app {
+  width: 100%;
+  max-width: 420px;
+  height: 90vh;
+  max-height: 800px;
+  background-color: #16161e;
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #2a2a36;
+}
+
+.scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: scale(0.98);
+  text-align: center;
+}
+
+.scene.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+/* Buttons & Interactive Elements */
+.btn {
+  background: #ffffff;
+  color: #16161e;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  background: #e2e2e2;
+}
+
+.btn-secondary {
+  background: #2b2b38;
+  color: #e6e6e6;
+  border: 1px solid #3d3d4e;
+}
+
+/* ==========================================
+   SCENE 1: THE CHAT & REWIND
+   ========================================== */
+.chat-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.chat-bubble {
+  background: #2b5278;
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 16px 16px 4px 16px;
+  max-width: 80%;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.chat-bubble.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rewind-effect {
+  animation: rewindAnim 1.2s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+}
+
+@keyframes rewindAnim {
+  0% { transform: scale(1) rotate(0deg); filter: blur(0); }
+  50% { filter: invert(1) blur(4px); }
+  100% { transform: scale(0.2) rotate(-20deg); opacity: 0; filter: blur(10px); }
+}
+
+/* ==========================================
+   SCENE 2: THE WORLD OF MEMORIES
+   ========================================== */
+.grid-memories {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.memory-card {
+  background: #22222e;
+  border: 1px solid #2e2e3e;
+  border-radius: 12px;
+  padding: 16px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.3s ease;
+}
+
+.memory-card:hover {
+  border-color: #6c5ce7;
+  background: #282836;
+}
+
+/* ==========================================
+   SCENE 3: THE BROKEN PIECES
+   ========================================== */
+.crack-overlay {
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+.scene-cracked .crack-overlay {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.8) 100%);
+}
+
+.door-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.door-item {
+  background: #1f1f2b;
+  border: 1px solid #333345;
+  padding: 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+/* ==========================================
+   SCENE 4: HER SIDE
+   ========================================== */
+.silent-screen {
+  background: #000000;
+  color: #888;
+}
+
+.silent-text {
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 60px;
+}
+
+/* ==========================================
+   SCENE 5: THE MIRROR
+   ========================================== */
+.mirror-box {
+  width: 100%;
+  padding: 20px;
+  background: #1c1c28;
+  border: 1px dashed #44445a;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.mirror-list {
+  list-style: none;
+  font-size: 14px;
+  color: #aaa;
+  line-height: 1.8;
+}
+
+/* ==========================================
+   SCENE 6: THE BOX
+   ========================================== */
+.box-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  font-size: 13px;
+}
+
+.box-item {
+  background: #20202c;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border-left: 3px solid #6c5ce7;
+}
+
+/* ==========================================
+   SCENE 7: MEMORIES THAT NEVER HAPPENED
+   ========================================== */
+.empty-scene {
+  background: #121218;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 12px;
+  border: 1px solid #22222e;
+}
+
+/* Modal Overlay */
+.modal {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: #1c1c26;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #333344;
+  text-align: center;
+}
